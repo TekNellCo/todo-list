@@ -7,6 +7,7 @@
     background-color: #1f1f1f;
 }
 .maincontainer{
+    position: relative;
     display: flex;
     flex-direction: column;
     background-color: #3e3e3e;
@@ -34,6 +35,20 @@
     width: 22%;
     height:100%;
     padding:1rem 2rem 2rem 2rem;
+}
+.add{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a1a1a1;
+    font-size: 1.8rem;
+    border-radius: 50%;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    transform: translate(-1rem ,31rem);
+
 }
 .header{
     display: flex;
@@ -100,7 +115,3 @@
     width: 1.2rem;
 
 }
-
-
-
-
