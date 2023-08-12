@@ -6,6 +6,14 @@
 :root{
     background-color: #1f1f1f;
 }
+.maincontainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #3e3e3e;
+    width: 90rem;
+    height:60rem;
+}
 .popup{
     position: absolute;
     display: flex;
@@ -20,15 +28,15 @@
     flex-direction: column;
     border-radius: 1rem;
     background-color: #696868;
-    height: 70%;
-    width: 70%;
-    padding: 4rem;
+    height: 50%;
+    width: 50%;
+    padding: 2rem;
 }
 .inputs{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap:5rem;
+    gap:2rem;
     height:90%;
     width: 100%;
 }
@@ -36,22 +44,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     height: 20%;
     
 }
 .inputs .text{
-    border-radius: 2rem;
     height: 100%;
     width: 70%;
-    font-size: 4rem;
+    font-size: 2rem;
+    text-align: center;
+    box-shadow: none;
+    border: none;
+    background-color: #b3b2b2;
+}
+.inputs .notes{
+    font-size:1rem;
+    height: 100%;
+    width: 70%;
     text-align: center;
     box-shadow: none;
     border: none;
     background-color: #b3b2b2;
 }
 .two .date{
-    font-size: 2rem;
+    font-size: 1rem;
     text-align: center;
     height:70%;
     width: 25%;
@@ -60,21 +75,31 @@
 
 }
 .one button{
+    cursor: pointer;
     border: none;
-    border-radius: 1rem;
-    height:70%;
-    width: 25%;
-    font-size: 3rem;
+    height:50%;
+    width: 15%;
+    font-size: 1rem;
     background-color: rgb(244, 165, 165);
+    margin-right:2.5rem;
 }
 .radios{
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: green;
     height: 11%;
     width: 100%;
-
+}
+.radios div label{
+    margin-right: 1rem;
+}
+.confirm{
+    cursor: pointer;
+    border: none;
+    height:100%;
+    width: 25%;
+    font-size: 1.5rem;
+    background-color: rgb(165, 244, 199);
 
 }

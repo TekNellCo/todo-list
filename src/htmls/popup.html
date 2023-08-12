@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo-List</title>
-    <link rel="stylesheet" href="popup.css">
+    <title>Blueprint</title>
+    <link rel="stylesheet" href="../styles/popup.css">
 </head>
 <body>
 
 <!-- /////////////////////////////////////////////////////////////// -->
-
+<div class="maincontainer">
         <div class="popup">
 
             <div class="popupinput">
 
                 <div class="inputs">
                     <div class="one">
-                        <input class="text"  type="text">
-                        <button>Delete</button>
+                        <input class="text" placeholder="Header"  type="text">
+                        <button>Delete/Close</button>
                     </div>
                     <div class="two">
-                        <input class="text"  type="text">
+                        <input class="text"  placeholder="Title"  type="text">
                         <input class="date" type="date">
                     </div>
                     <div class="three">
-                        <input class="text" type="text">
+                        <input class="notes text" placeholder="Notes"  type="text">
+                        <button class="confirm">Confirm</button>
                     </div>
                 </div>
 
@@ -33,17 +34,17 @@
                     <p>Priority</p>
 
                     <div>
-                        <label for="">LOW</label>
+                        <label for="">Low</label>
                         <input type="radio">
                     </div>
 
                     <div>
-                        <label for="">MEDIUM</label>
+                        <label for="">Med</label>
                         <input type="radio">
                     </div>
 
                     <div>
-                        <label for="">HIGH</label>
+                        <label for="">High</label>
                         <input type="radio">
                     </div>
                     
