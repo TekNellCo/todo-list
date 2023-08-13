@@ -9,6 +9,8 @@ import { headerCreator } from "./headerCreator.js";
 export function addTaskForm(){
     let popUp = document.createElement('div');
         let popUpInput = document.createElement('div');
+            let selection = document.createElement('select');
+                let option = document.createElement('option');
             let inputs = document.createElement('div');
                 let one = document.createElement('div');
                     let inputOneA = document.createElement('input');
@@ -36,23 +38,27 @@ divAInput.setAttribute('type','radio');
 divBInput.setAttribute('type','radio');
 divCInput.setAttribute('type','radio');
 
+option.disabled = "true";
+
 inputOneA.placeholder = "Header";
 inputTwoA.placeholder = "Title";
 inputThreeA.placeholder = "Notes";
 
-popUp.className = "popup"
-popUpInput.className = "popupinput"
-inputs.className = "inputs"
-inputOneA.className = "text"
-inputTwoA.className = "text"
-inputThreeA.className = "text"
-inputThreeA.className = "notes"
-one.className = "one"
-two.className = "two"
-radios.className = "radios"
-inputTwoB.className = "date"
-confirmBtn.className = "confirm"
+popUp.className = "popup";
+popUpInput.className = "popupinput";
+selection.className ="selection";
+inputs.className = "inputs";
+inputOneA.className = "text";
+inputTwoA.className = "text";
+inputThreeA.className = "text";
+inputThreeA.className = "notes";
+one.className = "one";
+two.className = "two";
+radios.className = "radios";
+inputTwoB.className = "date";
+confirmBtn.className = "confirm";
 
+option.textContent = "Add to current header";
 button.textContent = "Delete/Close";
 p.textContent = "Priority";
 divAlabel.textContent = "Low";
@@ -63,6 +69,8 @@ confirmBtn.textContent = "Confirm";
 mainContainer.append(popUp);
 popUp.append(popUpInput);
 popUpInput.append(inputs);
+popUpInput.append(selection);
+selection.append(option);
 inputs.append(one);
 one.append(inputOneA);
 one.append(button);
@@ -115,6 +123,5 @@ function taskCreator(header,title,notes,date,priority){
     }
     tasks.push(task) 
     headerCreator(task)
-    console.log(tasks.length)
 
 }
