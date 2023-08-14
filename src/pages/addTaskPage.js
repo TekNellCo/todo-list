@@ -14,7 +14,7 @@ export function addTaskForm(){
             let inputs = document.createElement('div');
                 let one = document.createElement('div');
                     let inputOneA = document.createElement('input');
-                    let button = document.createElement('button');
+                    let deleteClose = document.createElement('button');
                 let two = document.createElement('div');
                     let inputTwoA = document.createElement('input');
                     let inputTwoB = document.createElement('input');
@@ -38,7 +38,7 @@ divAInput.setAttribute('type','radio');
 divBInput.setAttribute('type','radio');
 divCInput.setAttribute('type','radio');
 
-option.disabled = "true";
+option.value = "";
 
 inputOneA.placeholder = "Header";
 inputTwoA.placeholder = "Title";
@@ -59,7 +59,7 @@ inputTwoB.className = "date";
 confirmBtn.className = "confirm";
 
 option.textContent = "Add to current header";
-button.textContent = "Delete/Close";
+deleteClose.textContent = "Delete/Close";
 p.textContent = "Priority";
 divAlabel.textContent = "Low";
 divBlabel.textContent = "Med";
@@ -69,11 +69,12 @@ confirmBtn.textContent = "Confirm";
 mainContainer.append(popUp);
 popUp.append(popUpInput);
 popUpInput.append(inputs);
-popUpInput.append(selection);
+// popUpInput.insertBefore(selection,popUpInput.firstChild)
+popUpInput.prepend(selection);
 selection.append(option);
 inputs.append(one);
 one.append(inputOneA);
-one.append(button);
+one.append(deleteClose);
 inputs.append(two);
 two.append(inputTwoA);
 two.append(inputTwoB);
@@ -91,7 +92,7 @@ divB.append(divBInput);
 radios.append(divC);
 divC.append(divCLabel);
 divC.append(divCInput);
-
+////////PUSHES INPUT VALUES TO TASK CREATOR ARRAY THEN RUNS FUNCTION FOR POPULATE DROPDOWN
 confirmBtn.addEventListener('click',()=>{
     let header = inputOneA.value;
     let title = inputTwoA.value;
@@ -103,16 +104,41 @@ confirmBtn.addEventListener('click',()=>{
     inputTwoA.value = ""
     inputThreeA.value = ""
     inputTwoB.value = ""
+    optionCreator();
 })
+///////////////POPULATES DROP-DOWN MENU AND ADDS VALUES TO EACH OPTION
+optionCreator();
+function optionCreator(){
+    selection.innerHTML = "";
+    let option = document.createElement('option');
+    option.textContent = "Add to current header";
+    option.value = "";
+    selection.append(option);
 
+    for(let i = 0; i < tasks.length; i++){
+        let headerSelect = document.createElement('option');
+        headerSelect.textContent = tasks[i][0].header;
+        headerSelect.value = i
+        selection.append(headerSelect);
+        // console.log(i);
+    } 
 
-button.addEventListener('click',()=>{
+}
+selection.addEventListener('change',()=>{
+    console.log(selection.value);
+    console.log(tasks);
+})
+////////////CLOSES THE TASK PAGE
+deleteClose.addEventListener('click',()=>{
     popUp.remove();
 })
 }
 
 
-////CREATES TASK AND PUSHES IT INTO ARRAY
+
+
+
+////CREATES TASK OBJECT AND PUSHES IT INTO ARRAY
 function taskCreator(header,title,notes,date,priority){
     let task = {
         header,
@@ -120,8 +146,21 @@ function taskCreator(header,title,notes,date,priority){
         notes,
         date,
         priority,
+        done : false,
     }
-    tasks.push(task) 
+    tasks.push([task]) 
     headerCreator(task)
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

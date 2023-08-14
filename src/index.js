@@ -2,9 +2,6 @@ import { addTaskForm } from "./pages/addTaskPage";
 
 
 
-
-
-
 // You'll need to loop through your array elements, create a new DOM node for each and append it to your object:
 
 // var select = document.getElementById("selectNumber");
