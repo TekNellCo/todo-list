@@ -103,9 +103,18 @@ confirmBtn.addEventListener('click',()=>{
     let priority = "med";
 
               /////IF DROPDOWN IS DEFAULT.WILL CREATE  NEW HEADER, IF NOT, MERGES TO EXISTING HEADER.
-    if(selection.value === ""){
+    if(selection.value === "" && inputOneA.value !== "" && inputTwoA.value == ""){
+        alert("Must input title")
+}else if(selection.value === "" && inputOneA.value !== "" && inputTwoA.value !== ""){
     taskCreator(header,title,notes,date,priority)
-} else if (selection.value !== ""){
+}else if (selection.value ==="" && inputOneA.value === "" && inputTwoA.value === ""){
+    alert ("Must input title and header")
+}else if(selection.value === "" && inputOneA.value === ""){
+    alert("Must include a header")
+
+}else if (selection.value !== "" && inputTwoA.value === ""){
+    alert("Must have a title");
+}else if(selection.value !== "" && inputTwoA.value !==""){
     taskMerger(selection.value,title,notes,date,priority);
 }else{
 
@@ -129,7 +138,7 @@ function taskMerger(selection,title,notes,date,priority){
         done : false
     }
     tasks[selection].push(subArray)
-    console.log(tasks)
+    // console.log(tasks)
 
 
 }
