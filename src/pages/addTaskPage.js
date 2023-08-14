@@ -1,6 +1,6 @@
 import { mainContainer, tasks } from "../index.js";
 import '../styles/popup.css';
-import { headerCreator } from "./headerCreator.js";
+import { headerCreator } from "./headerNoteCreator.js";
 
 
 
@@ -92,20 +92,51 @@ divB.append(divBInput);
 radios.append(divC);
 divC.append(divCLabel);
 divC.append(divCInput);
-////////PUSHES INPUT VALUES TO TASK CREATOR ARRAY THEN RUNS FUNCTION FOR POPULATE DROPDOWN
+
+
+       //////PUSHES INPUT VALUES TO TASK CREATOR ARRAY THEN RUNS FUNCTION FOR POPULATE DROPDOWN
 confirmBtn.addEventListener('click',()=>{
     let header = inputOneA.value;
     let title = inputTwoA.value;
     let notes = inputThreeA.value;
     let date = inputTwoB.value;
     let priority = "med";
+
+              /////IF DROPDOWN IS DEFAULT.WILL CREATE  NEW HEADER, IF NOT, MERGES TO EXISTING HEADER.
+    if(selection.value === ""){
     taskCreator(header,title,notes,date,priority)
+} else if (selection.value !== ""){
+    taskMerger(selection.value,title,notes,date,priority);
+}else{
+
+}
     inputOneA.value = ""
     inputTwoA.value = ""
     inputThreeA.value = ""
     inputTwoB.value = ""
     optionCreator();
 })
+
+
+         ///////PUSHES VALUES TO EXISTING ARRAY 
+function taskMerger(selection,title,notes,date,priority){
+    let subArray = {
+        header : tasks[selection][0].header,
+        title,
+        notes,
+        date,
+        priority,
+        done : false
+    }
+    tasks[selection].push(subArray)
+    console.log(tasks)
+
+
+}
+
+
+
+
 ///////////////POPULATES DROP-DOWN MENU AND ADDS VALUES TO EACH OPTION
 optionCreator();
 function optionCreator(){
@@ -124,19 +155,20 @@ function optionCreator(){
     } 
 
 }
-selection.addEventListener('change',()=>{
-    console.log(selection.value);
-    console.log(tasks);
-})
+// selection.addEventListener('change',()=>{
+//     console.log(selection.value);
+//     console.log(tasks);
+
+//     if(selection.value === ""){
+
+
+//     }
+// })
 ////////////CLOSES THE TASK PAGE
 deleteClose.addEventListener('click',()=>{
     popUp.remove();
 })
 }
-
-
-
-
 
 ////CREATES TASK OBJECT AND PUSHES IT INTO ARRAY
 function taskCreator(header,title,notes,date,priority){
