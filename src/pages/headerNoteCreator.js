@@ -13,7 +13,7 @@ export function headerCreator(task){
     header.addEventListener('click',(e)=>{
         let headerNum = e.target.dataset.num ;
         openList(headerNum);
-        console.log(headerNum)
+        // console.log(headerNum)
     })
 }
 
@@ -28,6 +28,7 @@ function openList(headerNum){
         let detailBtn = document.createElement('button');
         let checkBox = document.createElement('input');
 
+        detailBtn.dataset.num = i;
         detailBtn.textContent = "Details";
         p.textContent = `${tasks[headerNum][i].title}`
 
@@ -47,6 +48,13 @@ checkBox.addEventListener('click',()=>{
     }else if(checkBox.checked === false){
         notetab.style.backgroundColor = ""
     }
+})
+
+
+
+detailBtn.addEventListener('click',(e)=>{
+    let subArray = e.target.dataset.num
+    console.log(tasks[headerNum][subArray])
 })
 
 
