@@ -1,4 +1,5 @@
 import {headerContainer, tasks, list} from '../index.js';
+import { detailsEditor } from './detailContainer.js';
 
 
 ////////    CREATES A HEADER ON SIDEBAR AND ADDS DATASET NUMBER TO IT
@@ -19,7 +20,7 @@ export function headerCreator(task){
 
 
 ///////RUNS A LOOP ON THE SELECTED HEADERS SUB ARRAY AND POPULATES A LIST
-function openList(headerNum){
+export function openList(headerNum){
     list.innerHTML =""
     for(let i=0; i< tasks[headerNum].length; i++){
         let notetab = document.createElement('div');
@@ -52,9 +53,10 @@ checkBox.addEventListener('click',()=>{
 
 
 
+///////////////////OPENS DETAIL BOX
 detailBtn.addEventListener('click',(e)=>{
     let subArray = e.target.dataset.num
-    console.log(tasks[headerNum][subArray])
+    detailsEditor(headerNum,subArray,tasks[headerNum][subArray])
 })
 
 
