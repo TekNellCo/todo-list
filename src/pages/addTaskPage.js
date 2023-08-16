@@ -94,6 +94,16 @@ divC.append(divCLabel);
 divC.append(divCInput);
 
 
+
+
+
+
+
+
+
+// console.log(tasks)
+
+
        //////PUSHES INPUT VALUES TO TASK CREATOR ARRAY THEN RUNS FUNCTION FOR POPULATE DROPDOWN
 confirmBtn.addEventListener('click',()=>{
     let header = inputOneA.value;
@@ -103,10 +113,30 @@ confirmBtn.addEventListener('click',()=>{
     let priority = "med";
 
               /////IF DROPDOWN IS DEFAULT.WILL CREATE  NEW HEADER, IF NOT, MERGES TO EXISTING HEADER.
+
     if(selection.value === "" && inputOneA.value !== "" && inputTwoA.value == ""){
         alert("Must input title")
 }else if(selection.value === "" && inputOneA.value !== "" && inputTwoA.value !== ""){
-    taskCreator(header,title,notes,date,priority)
+
+    // if(tasks.length > 0){ 
+    //     for(let i=0; i<tasks.length; i++){
+    //         if(tasks[i][0].header === inputOneA.value){
+    //             taskMerger(i,title,notes,date,priority)
+    //             console.log(`merged array ${tasks[i][0]}`)
+    //             console.log(`merger header ${header}`)
+    //             console.log(`input value ${inputOneA.value}`)
+    //         }else if(tasks[i][0].header !== inputOneA.value){
+    //             taskCreator(header,title,notes,date,priority)
+    //             console.log(`create array ${tasks[i][0].header}`)
+    //             console.log(`create header header ${header}`)
+    //             console.log(`task length ${tasks.length}`)
+    //         }else{}
+
+    //     }
+    // }else{
+        taskCreator(header,title,notes,date,priority)
+    // }
+
 }else if (selection.value ==="" && inputOneA.value === "" && inputTwoA.value === ""){
     alert ("Must input title and header")
 }else if(selection.value === "" && inputOneA.value === ""){
@@ -124,6 +154,7 @@ confirmBtn.addEventListener('click',()=>{
     inputThreeA.value = ""
     inputTwoB.value = ""
     optionCreator();
+    console.log(tasks)
 })
 
 
@@ -164,15 +195,14 @@ function optionCreator(){
     } 
 
 }
-// selection.addEventListener('change',()=>{
-//     console.log(selection.value);
-//     console.log(tasks);
-
-//     if(selection.value === ""){
-
-
-//     }
-// })
+selection.addEventListener('change',()=>{
+    if(selection.value !== ""){
+        inputOneA.remove();
+    }else{
+        one.prepend(inputOneA);
+    }
+        
+})
 ////////////CLOSES THE TASK PAGE
 deleteClose.addEventListener('click',()=>{
     popUp.remove();
