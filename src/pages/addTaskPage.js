@@ -61,7 +61,7 @@ inputTwoB.className = "date";
 confirmBtn.className = "confirm";
 
 option.textContent = "Add to current header";
-deleteClose.textContent = "Delete/Close";
+deleteClose.textContent = "Close";
 p.textContent = "Priority";
 divAlabel.textContent = "Low";
 divBlabel.textContent = "Med";
