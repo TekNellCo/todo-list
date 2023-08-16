@@ -61,7 +61,7 @@ divCInput.addEventListener('click',()=>{
 option.value = "";
 
 inputOneA.placeholder = "Header";
-inputTwoA.placeholder = "Title";
+inputTwoA.placeholder = "Task";
 inputThreeA.placeholder = "Notes";
 
 popUp.className = "popup";
