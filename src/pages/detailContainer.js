@@ -1,5 +1,5 @@
 import { tasks, mainContainer } from "../index.js";
-import { openList } from "./headerNoteCreator.js";
+import { openList  } from "./headerNoteCreator.js";
 import '../styles/popup.css';
 
 
@@ -9,7 +9,7 @@ import '../styles/popup.css';
 
 
 
-
+/////////////CREATES A POPUP OF DETAILS
 export function detailsEditor(headerNum,subArray,taskInfo){
     // console.log(arrayNum)
     // console.log(taskInfo);
@@ -42,12 +42,33 @@ date.setAttribute('type','date');
 divAInput.setAttribute('type','radio');
 divBInput.setAttribute('type','radio');
 divCInput.setAttribute('type','radio');
+divAInput.setAttribute('name','priority');
+divBInput.setAttribute('name','priority');
+divCInput.setAttribute('name','priority');
 
+divAInput.dataset.priority = "low"
+divBInput.dataset.priority = "med"
+divCInput.dataset.priority = "high"
+
+let priority = "low"
+
+divAInput.addEventListener('click',()=>{
+    priority = "low"
+})
+divBInput.addEventListener('click',()=>{
+    priority = "med"
+})
+divCInput.addEventListener('click',()=>{
+    priority = "high"
+})
 
 task.value = taskInfo.title;
 notes.value = taskInfo.notes;
 date.value = taskInfo.date;
 
+// deleteClose.value = 
+
+// console.log(`[${headerNum}][${subArray}]`);
 
 
 popUp.className = "popup";
@@ -98,8 +119,11 @@ divC.append(divCInput);
 
        //////PUSHES INPUT VALUES TO TASK CREATOR ARRAY THEN RUNS FUNCTION FOR POPULATE DROPDOWN
 confirmBtn.addEventListener('click',()=>{
-    taskMerger(taskInfo.header,task.value,notes.value,date.value);
+    taskMerger(taskInfo.header,task.value,notes.value,date.value,priority);
     openList(headerNum);
+    popUp.remove();
+
+
     
 
     // console.log(title)
@@ -111,13 +135,13 @@ confirmBtn.addEventListener('click',()=>{
 
 
          ///////PUSHES VALUES TO EXISTING ARRAY 
-function taskMerger(header,title,notes,date){
+function taskMerger(header,title,notes,date,priority){
     let subArrayNew = {
         header,
         title,
         notes,
         date,
-        priority : "med",
+        priority,
         done : false
     }
     // if(selection.value !== headerNum){
@@ -136,7 +160,7 @@ function taskMerger(header,title,notes,date){
 
 
 
-///////////////POPULATES DROP-DOWN MENU AND ADDS VALUES TO EACH OPTION
+// /////////////POPULATES DROP-DOWN MENU AND ADDS VALUES TO EACH OPTION
 // optionCreator();
 // function optionCreator(){
 //     selection.innerHTML = "";
@@ -161,8 +185,16 @@ function taskMerger(header,title,notes,date){
 // })
 ////////////CLOSES THE TASK PAGE
 deleteClose.addEventListener('click',()=>{
+    tasks[headerNum].splice(subArray,1)
+    console.log(tasks)
+    openList(headerNum);
+    
     popUp.remove();
+  
+
+
+
+
 })
 }
-
 

@@ -1,5 +1,5 @@
 import {headerContainer, tasks, list} from '../index.js';
-import { detailsEditor } from './detailContainer.js';
+import { detailsEditor  } from './detailContainer.js';
 
 
 ////////    CREATES A HEADER ON SIDEBAR AND ADDS DATASET NUMBER TO IT
@@ -33,6 +33,19 @@ export function openList(headerNum){
         detailBtn.textContent = "Details";
         p.textContent = `${tasks[headerNum][i].title}`
 
+        if(tasks[headerNum][i].priority === "low"){
+            notetab.style.backgroundColor = "grey"
+        }else if(tasks[headerNum][i].priority === "med"){
+            notetab.style.backgroundColor = "yellow"
+        }else if(tasks[headerNum][i].priority === "high"){
+            notetab.style.backgroundColor = "red"
+        }else{}
+
+
+
+
+
+
         notetab.className = "notetab";
 
         checkBox.setAttribute("type","checkbox")
@@ -47,9 +60,27 @@ checkBox.addEventListener('click',()=>{
     if(checkBox.checked === true){
         notetab.style.backgroundColor = "green"
     }else if(checkBox.checked === false){
-        notetab.style.backgroundColor = ""
+
+        if(tasks[headerNum][i].priority === "low"){
+            notetab.style.backgroundColor = "grey"
+        }else if(tasks[headerNum][i].priority === "med"){
+            notetab.style.backgroundColor = "yellow"
+        }else if(tasks[headerNum][i].priority === "high"){
+            notetab.style.backgroundColor = "red"
+        }else{}
+        
+        
     }
 })
+
+
+
+
+// function divRemove(div){
+//     div.remove();
+
+
+// }
 
 
 

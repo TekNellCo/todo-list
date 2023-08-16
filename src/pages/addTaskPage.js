@@ -38,6 +38,25 @@ inputTwoB.setAttribute('type','date');
 divAInput.setAttribute('type','radio');
 divBInput.setAttribute('type','radio');
 divCInput.setAttribute('type','radio');
+divAInput.setAttribute('name','priority');
+divBInput.setAttribute('name','priority');
+divCInput.setAttribute('name','priority');
+divAInput.dataset.priority = "low"
+divBInput.dataset.priority = "med"
+divCInput.dataset.priority = "high"
+
+let priority = "low"
+
+divAInput.addEventListener('click',()=>{
+    priority = "low"
+})
+divBInput.addEventListener('click',()=>{
+    priority = "med"
+})
+divCInput.addEventListener('click',()=>{
+    priority = "high"
+})
+
 
 option.value = "";
 
@@ -97,8 +116,24 @@ divC.append(divCInput);
 
 
 
+optionCreator();
+function optionCreator(){
+    selection.innerHTML = "";
+    let option = document.createElement('option');
+    option.value = "";
+    option.textContent = "Add to current header";
+    selection.append(option);
 
 
+    for(let i = 0; i < tasks.length; i++){
+        let headerSelect = document.createElement('option');
+        headerSelect.textContent = tasks[i][0].header;
+        headerSelect.value = i
+        selection.append(headerSelect);
+        console.log(i);
+    } 
+
+}
 
 
 
@@ -112,7 +147,6 @@ confirmBtn.addEventListener('click',()=>{
     let title = inputTwoA.value;
     let notes = inputThreeA.value;
     let date = inputTwoB.value;
-    let priority = "med";
 
               /////IF DROPDOWN IS DEFAULT.WILL CREATE  NEW HEADER, IF NOT, MERGES TO EXISTING HEADER.
 
