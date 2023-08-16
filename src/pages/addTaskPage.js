@@ -14,6 +14,7 @@ export function addTaskForm(){
             let inputs = document.createElement('div');
                 let one = document.createElement('div');
                     let inputOneA = document.createElement('input');
+                    let inputEmpty = document.createElement('div');
                     let deleteClose = document.createElement('button');
                 let two = document.createElement('div');
                     let inputTwoA = document.createElement('input');
@@ -49,6 +50,7 @@ popUpInput.className = "popupinput";
 selection.className ="selection";
 inputs.className = "inputs";
 inputOneA.className = "text";
+inputEmpty.className = "text";
 inputTwoA.className = "text";
 inputThreeA.className = "text";
 inputThreeA.className = "notes";
@@ -118,24 +120,7 @@ confirmBtn.addEventListener('click',()=>{
         alert("Must input title")
 }else if(selection.value === "" && inputOneA.value !== "" && inputTwoA.value !== ""){
 
-    // if(tasks.length > 0){ 
-    //     for(let i=0; i<tasks.length; i++){
-    //         if(tasks[i][0].header === inputOneA.value){
-    //             taskMerger(i,title,notes,date,priority)
-    //             console.log(`merged array ${tasks[i][0]}`)
-    //             console.log(`merger header ${header}`)
-    //             console.log(`input value ${inputOneA.value}`)
-    //         }else if(tasks[i][0].header !== inputOneA.value){
-    //             taskCreator(header,title,notes,date,priority)
-    //             console.log(`create array ${tasks[i][0].header}`)
-    //             console.log(`create header header ${header}`)
-    //             console.log(`task length ${tasks.length}`)
-    //         }else{}
-
-    //     }
-    // }else{
         taskCreator(header,title,notes,date,priority)
-    // }
 
 }else if (selection.value ==="" && inputOneA.value === "" && inputTwoA.value === ""){
     alert ("Must input title and header")
@@ -153,8 +138,7 @@ confirmBtn.addEventListener('click',()=>{
     inputTwoA.value = ""
     inputThreeA.value = ""
     inputTwoB.value = ""
-    optionCreator();
-    console.log(tasks)
+    // optionCreator();
 })
 
 
@@ -176,29 +160,16 @@ function taskMerger(selection,title,notes,date,priority){
 
 
 
-
-///////////////POPULATES DROP-DOWN MENU AND ADDS VALUES TO EACH OPTION
-optionCreator();
-function optionCreator(){
-    selection.innerHTML = "";
-    let option = document.createElement('option');
-    option.textContent = "Add to current header";
-    option.value = "";
-    selection.append(option);
-
-    for(let i = 0; i < tasks.length; i++){
-        let headerSelect = document.createElement('option');
-        headerSelect.textContent = tasks[i][0].header;
-        headerSelect.value = i
-        selection.append(headerSelect);
-        // console.log(i);
-    } 
-
-}
 selection.addEventListener('change',()=>{
+    console.log(selection.value)
     if(selection.value !== ""){
-        inputOneA.remove();
+        inputEmpty.style.cssText = "display:flex; justify-content:center; cursor :default"
+        inputEmpty.textContent = `${tasks[selection.value][0].header}`
+
+        one.firstChild.remove();
+        one.prepend(inputEmpty)
     }else{
+        one.firstChild.remove();
         one.prepend(inputOneA);
     }
         
@@ -207,7 +178,8 @@ selection.addEventListener('change',()=>{
 deleteClose.addEventListener('click',()=>{
     popUp.remove();
 })
-}
+
+
 
 ////CREATES TASK OBJECT AND PUSHES IT INTO ARRAY
 function taskCreator(header,title,notes,date,priority){
@@ -218,11 +190,38 @@ function taskCreator(header,title,notes,date,priority){
         date,
         priority,
         done : false,
+        value : tasks.length,
     }
     tasks.push([task]) 
     headerCreator(task)
+    addOption(task);
+
 
 }
+
+function addOption(task){
+         let headerSelect = document.createElement('option');
+        headerSelect.textContent = task.header;
+        headerSelect.value = task.value
+        selection.append(headerSelect);
+
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
